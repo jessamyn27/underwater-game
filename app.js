@@ -13,19 +13,123 @@ window.addEventListener('resize', function() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+// Listens for keydown
+window.addEventListener("keydown", moveFloater, true);
 
 //CLASSES
-class Mermaid {
-  constructor(x, y, dx, dy) {
+class Floater {
+  constructor(name, x, y, dx, dy) {
+    this.name = name;
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
+    // this.image = image;
   }
 }
 
 // need to make the mermaid object
-const ariel = new Mermaid(660, 510, 128, 128);
+const ariel = new Floater('ariel', 500, 500, 50, 50);
+
+// need to make the shell object
+const shell = new Floater('shell', 100, 100, 50, 50)
+
+//  images showing up
+const backgroundImage = new Image();
+backgroundImage.src = 'images/background.jpg'
+
+const shellImage = new Image();
+shellImage.src = 'images/shell.png'
+
+const arielImage = new Image();
+arielImage.src = 'images/mermaid.png'
+
+const fishingImage = new Image();
+fishingImage.src = 'images/fishing.png'
+
+// function to show & size my images on the screen
+const animate = () => {
+c.clearRect(0, 0, 1000, 1000);
+requestAnimationFrame(animate);
+c.drawImage(backgroundImage, 0, 0, 1000, 1000);
+c.drawImage(shellImage, shell.x, shell.y, 100, 100);
+c.drawImage(arielImage, ariel.x, ariel.y, 100, 100);
+c.drawImage(fishingImage, 400, 10, 100, 100);
+}
+/// trying switch case for moving Mermaid
+function moveFloater(e) {
+    switch(e.keyCode) {
+        case 90:
+        shell.x -= shell.dx;
+        console.log(ariel);
+            // left key pressed
+            break;
+        case 67:
+        shell.x += shell.dx;
+            // right key pressed
+            break;
+        case 68:
+        shell.y -= shell.dy;
+            // up key pressed
+            break;
+        case 88:
+        ariel.y += ariel.dy;
+            // down key pressed
+            break;
+    }
+}
+
+function moveFloater(e) {
+    switch(e.keyCode) {
+        case 37:
+        ariel.x -= ariel.dx;
+        console.log(ariel);
+            // left key pressed
+            break;
+        case 39:
+        ariel.x += ariel.dx;
+            // right key pressed
+            break;
+        case 38:
+        ariel.y -= ariel.dy;
+            // up key pressed
+            break;
+        case 40:
+        ariel.y += ariel.dy;
+            // down key pressed
+            break;
+    }
+}
+// move mermaid left, right, up, down
+// function moveMermaid(e) {
+//   if (e.keyCode == 39) { //r
+//     ariel.x += 50;
+//     console.log(ariel);
+//   }
+//   if (e.keyCode == 37) { //l
+//     ariel.x -= 10;
+//     console.log(ariel);
+//   }
+//   if (e.keyCode == 38) { //up
+//     ariel.y -= 10;
+//     console.log(ariel);
+//   }
+//   if (e.keyCode == 40) { //down
+//     ariel.y += 10;
+//     console.log(ariel);
+//
+//     canvas.width = canvas.width; //resets the canvas.
+//     console.log(ariel);
+//   }
+// }
+animate(ariel);
+// document.onkeydown = moveMermaid;
+
+// move hook randomly around the room
+
+
+
+
 
 // need to make x amt of pink shells float around at random in the canvas
 
@@ -34,56 +138,6 @@ const ariel = new Mermaid(660, 510, 128, 128);
 //   var x = Math.random() * window.innerWidth;
 //   var y = Math.random() * window.innerHeight;
 // }
-
-//  images showing up
-let backgroundImage = new Image();
-backgroundImage.src = 'images/background.jpg'
-
-let shellImage = new Image();
-shellImage.src = 'images/shell.png'
-
-let arielImage = new Image();
-arielImage.src = 'images/mermaid.png'
-
-let fishingImage = new Image();
-fishingImage.src = 'images/fishing.png'
-
-// function to show & size my images on the screen
-const animate = () => {
-c.clearRect(0, 0, 1000, 1000);
-requestAnimationFrame(animate);
-c.drawImage(backgroundImage, 0, 0, 1000, 1000);
-c.drawImage(shellImage, 0, 110, 100, 100);
-c.drawImage(arielImage, 200, 200, 100, 100);
-c.drawImage(fishingImage, 400, 10, 100, 100);
-}
-// move mermaid left, right, up, down
-function moveAriel(e) {
-  if (e.keyCode == 39) { //r
-    ariel.x += 50;
-    console.log(ariel);
-  }
-  if (e.keyCode == 37) { //l
-    ariel.x -= 10;
-    console.log(ariel);
-  }
-  if (e.keyCode == 38) { //up
-    ariel.y -= 10;
-    console.log(ariel);
-  }
-  if (e.keyCode == 40) { //down
-    ariel.y += 10;
-    console.log(ariel);
-
-    canvas.width = canvas.width; //resets the canvas.
-    console.log(ariel);
-  }
-}
-
-animate();
-document.onkeydown = moveAriel;
-
-
 
 
 
@@ -127,8 +181,8 @@ document.onkeydown = moveAriel;
 // c.arc(300, 300, 30, 0, Math.PI * 2, false);
 // c.strokeStyle = 'blue';
 // c.stroke();
-//
-// for (var i = 0; i < 400; i++) {
+// //
+// for (var i = 0; i < 100; i++) {
 //   var x = Math.random() * window.innerWidth;
 //   var y = Math.random() * window.innerHeight;
 //   c.beginPath();
