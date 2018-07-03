@@ -16,51 +16,73 @@ window.addEventListener('resize', function() {
 
 //CLASSES
 class Mermaid {
-  constructor(name, speed, speedType, direction, xPosition, yPosition, width, height) {
-    this.name = name;
-    this.speed = speed;
-    this.speedType = speedType;
-    this.direction = direction;
-    this.xPosition = xPosition;
-    this.yPosition = yPosition;
-    this.width = width;
-    this.height = height;
+  constructor(x, y, dx, dy) {
+    this.x = x;
+    this.y = y;
+    this.dx = dx;
+    this.dy = dy;
   }
 }
 
-const mermaid = new Mermaid('mermaid', 4, 'medium', 'all', 660, 510, 128, 128);
+// need to make the mermaid object
+const ariel = new Mermaid(660, 510, 128, 128);
 
-class Shell extends Mermaid {}
+// need to make x amt of pink shells float around at random in the canvas
 
-const pink = new Shell('pink', 5, 'fast', 'left')
-for (var i = 0; i < 400; i++) {
-  var x = Math.random() * window.innerWidth;
-  var y = Math.random() * window.innerHeight;
-  $pink.append('shellImage');
-}
-//  images
+// const pinkShell =
+// for (var i = 0; i < 400; i++) {
+//   var x = Math.random() * window.innerWidth;
+//   var y = Math.random() * window.innerHeight;
+// }
+
+//  images showing up
 let backgroundImage = new Image();
 backgroundImage.src = 'images/background.jpg'
 
 let shellImage = new Image();
 shellImage.src = 'images/shell.png'
 
-let mermaidImage = new Image();
-mermaidImage.src = 'images/mermaid.png'
+let arielImage = new Image();
+arielImage.src = 'images/mermaid.png'
 
 let fishingImage = new Image();
 fishingImage.src = 'images/fishing.png'
 
-// function to show & size my images
+// function to show & size my images on the screen
 const animate = () => {
 c.clearRect(0, 0, 1000, 1000);
 requestAnimationFrame(animate);
 c.drawImage(backgroundImage, 0, 0, 1000, 1000);
 c.drawImage(shellImage, 0, 110, 100, 100);
-c.drawImage(mermaidImage, 200, 200, 100, 100);
-c.drawImage(fishingImage, 400, 10, 100, 100)
+c.drawImage(arielImage, 200, 200, 100, 100);
+c.drawImage(fishingImage, 400, 10, 100, 100);
 }
+// move mermaid left, right, up, down
+function moveAriel(e) {
+  if (e.keyCode == 39) { //r
+    ariel.x += 50;
+    console.log(ariel);
+  }
+  if (e.keyCode == 37) { //l
+    ariel.x -= 10;
+    console.log(ariel);
+  }
+  if (e.keyCode == 38) { //up
+    ariel.y -= 10;
+    console.log(ariel);
+  }
+  if (e.keyCode == 40) { //down
+    ariel.y += 10;
+    console.log(ariel);
+
+    canvas.width = canvas.width; //resets the canvas.
+    console.log(ariel);
+  }
+}
+
 animate();
+document.onkeydown = moveAriel;
+
 
 
 
@@ -105,7 +127,7 @@ animate();
 // c.arc(300, 300, 30, 0, Math.PI * 2, false);
 // c.strokeStyle = 'blue';
 // c.stroke();
-
+//
 // for (var i = 0; i < 400; i++) {
 //   var x = Math.random() * window.innerWidth;
 //   var y = Math.random() * window.innerHeight;
@@ -215,12 +237,12 @@ animate();
 //       circleArray[i].update();
 //     }
 // }
-  // c.beginPath();
-  // c.arc(x, y, radius, 0, Math.PI * 2, false
-  //   );
-  // c.strokeStyle = 'blue';
-  // c.stroke();
-
+//   c.beginPath();
+//   c.arc(x, y, radius, 0, Math.PI * 2, false
+//     );
+//   c.strokeStyle = 'blue';
+//   c.stroke();
+//
 // itit();
-
+//
 // animate();
