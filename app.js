@@ -26,6 +26,8 @@ class Floater {
     this.dy = dy;
     this.image = image;
     this.hasBeenMoving = 0;
+    // this.height = height;
+    // this.width = wid
 }
 move(direction){
     console.log("MOVING")
@@ -62,11 +64,14 @@ float(){
 // float
 // need to make the mermaid object
 const ariel = new Floater('ariel', 500, 500, 50, 50);
-
+ariel.height = 100
+ariel.width = 100
 
 // need to make the shell object
 const shell = new Floater('shell', 300, 300, 50, 50);
-// shell.float()
+shell.float()
+shell.height = 100
+shell.width = 100
 
 // need to make the anchor object
 const anchor = new Floater('anchor', 200, 200, 50, 50);
@@ -87,33 +92,19 @@ anchorImage.src = 'images/fishing.png'
 const animate = () => {
 c.clearRect(0, 0, 1000, 1000);
 requestAnimationFrame(animate);
+if (ariel.x < shell.x + shell.width &&
+   ariel.x + ariel.width > shell.x &&
+   ariel.y < shell.y + shell.height &&
+   ariel.height + ariel.y > shell.y) {
+console.log("collision!");
+}
 c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 c.drawImage(shellImage, shell.x, shell.y, 100, 100);
 c.drawImage(arielImage, ariel.x, ariel.y, 100, 100);
 c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
+
 }
-// /// trying switch case for moving SHELL
-// function moveShell(e) {
-//     switch(e.which) {
-//         case 90:
-//         shell.x -= shell.dx;
-//         console.log(shell);
-//             // left key pressed 'z'
-//             break;
-//         case 67:
-//         shell.x += shell.dx;
-//             // right key pressed 'c'
-//             break;
-//         case 68:
-//         shell.y -= shell.dy;
-//             // up key pressed 's'
-//             break;
-//         case 88:
-//         shell.y += shell.dy;
-//             // down key pressed 'x'
-//             break;
-//     }
-// }
+
 /// trying switch case for moving ARIEL
 function moveAriel(e) {
     switch(e.which) {
@@ -124,54 +115,28 @@ function moveAriel(e) {
         console.log(ariel);
             break;
             // left key pressed
-
         case 39:
         if(ariel.x + ariel.dx < canvas.width) {
         ariel.x += ariel.dx;
       }
             break;
             // right key pressed
-
         case 38:
         if(ariel.y - ariel.dy > 0){
         ariel.y -= ariel.dy;
       }
             break;
             // move up
-
         case 40:
         if(ariel.y + ariel.dy < canvas.height){
         ariel.y += ariel.dy;
       }
             break;
             // down key pressed
-
     }
 }
 
-// }
-// /// trying switch case for moving ANCHOR
-// function moveAnchor(e) {
-//     switch(e.which) {
-//         case 37:
-//         anchor.x -= anchor.dx;
-//         console.log(anchor);
-//             // left key pressed
-//             break;
-//         case 39:
-//         anchor.x += anchor.dx;
-//             // right key pressed
-//             break;
-//         case 38:
-//         anchor.y -= anchor.dy;
-//             // up key pressed
-//             break;
-//         case 40:
-//         anchor.y += anchor.dy;
-//             // down key pressed
-//             break;
-//     }
-// }
+
 
 animate();
 
@@ -181,21 +146,15 @@ animate();
 // var rect1 = {x: 5, y: 5, width: 50, height: 50}
 // var rect2 = {x: 20, y: 10, width: 10, height: 10}
 
-// if (ariel.x < shell.x + shell.width &&
-//    ariel.x + ariel.width > shell.x &&
-//    ariel.y < shell.y + shell.height &&
-//    ariel.height + ariel.y > shell.y) {
-// console.log("collision!");
-//     // collision detected!
-// }
 
+//
 // filling in the values =>
-
+//
 // if (5 < 30 &&
 //     55 > 20 &&
 //     5 < 20 &&
 //     55 > 10) {
-    // collision detected!
+//     collision detected!
 // }
 
 document.onkeydown = moveAriel;
