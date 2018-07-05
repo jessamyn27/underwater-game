@@ -25,11 +25,11 @@ class Floater {
     this.dx = dx;
     this.dy = dy;
     this.image = image;
-    this.hasBeenMoving = 8;
+    this.hasBeenMoving = 0;
 }
 move(direction){
     console.log("MOVING")
-      if(direction == "up" && this.y - this.dy < 0){
+      if(direction == "up" && this.y - this.dy > 0){
         // move up
         this.y -= this.dy;
       }else if(direction =="down" && this.y + this.dy < canvas.height ){
@@ -38,7 +38,7 @@ move(direction){
       }else if(direction == "right" && this.x + this.dx < canvas.width){
         // move right
         this.x += this.dx
-      }else if(direction =="left" && this.x - this.dx < 0){
+      }else if(direction =="left" && this.x - this.dx > 0){
         // move left
           this.x -= this.dx
       }
@@ -63,9 +63,10 @@ float(){
 // need to make the mermaid object
 const ariel = new Floater('ariel', 500, 500, 50, 50);
 
+
 // need to make the shell object
 const shell = new Floater('shell', 300, 300, 50, 50);
-shell.float()
+// shell.float()
 
 // need to make the anchor object
 const anchor = new Floater('anchor', 200, 200, 50, 50);
@@ -86,7 +87,7 @@ anchorImage.src = 'images/fishing.png'
 const animate = () => {
 c.clearRect(0, 0, 1000, 1000);
 requestAnimationFrame(animate);
-c.drawImage(backgroundImage, 0, 0, 1000, 1000);
+c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 c.drawImage(shellImage, shell.x, shell.y, 100, 100);
 c.drawImage(arielImage, ariel.x, ariel.y, 100, 100);
 c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
@@ -117,24 +118,38 @@ c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
 function moveAriel(e) {
     switch(e.which) {
         case 37:
+        if(ariel.x - ariel.dx > 0){
         ariel.x -= ariel.dx;
+      }
         console.log(ariel);
+            break;
             // left key pressed
-            break;
+
         case 39:
+        if(ariel.x + ariel.dx < canvas.width) {
         ariel.x += ariel.dx;
+      }
+            break;
             // right key pressed
-            break;
+
         case 38:
+        if(ariel.y - ariel.dy > 0){
         ariel.y -= ariel.dy;
-            // up key pressed
+      }
             break;
+            // move up
+
         case 40:
+        if(ariel.y + ariel.dy < canvas.height){
         ariel.y += ariel.dy;
-            // down key pressed
+      }
             break;
+            // down key pressed
+
     }
 }
+
+// }
 // /// trying switch case for moving ANCHOR
 // function moveAnchor(e) {
 //     switch(e.which) {
