@@ -14,17 +14,17 @@ window.addEventListener('resize', function() {
   canvas.height = window.innerHeight;
 });
 // Listens for keydown
-window.addEventListener("keydown", moveFloater, true);
+window.addEventListener("keydown", moveAriel, moveShell, true);
 
 //CLASSES
 class Floater {
-  constructor(name, x, y, dx, dy) {
+  constructor(name, x, y, dx, dy, image) {
     this.name = name;
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
-    // this.image = image;
+    this.image = image;
   }
 }
 
@@ -32,7 +32,10 @@ class Floater {
 const ariel = new Floater('ariel', 500, 500, 50, 50);
 
 // need to make the shell object
-const shell = new Floater('shell', 100, 100, 50, 50)
+const shell = new Floater('shell', 300, 300, 50, 50);
+
+// need to make the anchor object
+const anchor = new Floater('anchor', 200, 200, 50, 50);
 
 //  images showing up
 const backgroundImage = new Image();
@@ -44,8 +47,8 @@ shellImage.src = 'images/shell.png'
 const arielImage = new Image();
 arielImage.src = 'images/mermaid.png'
 
-const fishingImage = new Image();
-fishingImage.src = 'images/fishing.png'
+const anchorImage = new Image();
+anchorImage.src = 'images/fishing.png'
 
 // function to show & size my images on the screen
 const animate = () => {
@@ -54,14 +57,14 @@ requestAnimationFrame(animate);
 c.drawImage(backgroundImage, 0, 0, 1000, 1000);
 c.drawImage(shellImage, shell.x, shell.y, 100, 100);
 c.drawImage(arielImage, ariel.x, ariel.y, 100, 100);
-c.drawImage(fishingImage, 400, 10, 100, 100);
+c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
 }
-/// trying switch case for moving Mermaid
-function moveFloater(e) {
+// /// trying switch case for moving SHELL
+function moveShell(e) {
     switch(e.keyCode) {
         case 90:
         shell.x -= shell.dx;
-        console.log(ariel);
+        console.log(shell);
             // left key pressed
             break;
         case 67:
@@ -73,57 +76,82 @@ function moveFloater(e) {
             // up key pressed
             break;
         case 88:
-        ariel.y += ariel.dy;
+        shell.y += shell.dy;
             // down key pressed
             break;
     }
 }
-
-function moveFloater(e) {
+/// trying switch case for moving ARIEL
+function moveAriel(e) {
     switch(e.keyCode) {
-        case 37:
+        case 188:
         ariel.x -= ariel.dx;
         console.log(ariel);
             // left key pressed
             break;
-        case 39:
+        case 191:
         ariel.x += ariel.dx;
             // right key pressed
             break;
-        case 38:
+        case 76:
         ariel.y -= ariel.dy;
             // up key pressed
             break;
-        case 40:
+        case 190:
         ariel.y += ariel.dy;
             // down key pressed
             break;
     }
 }
-// move mermaid left, right, up, down
-// function moveMermaid(e) {
-//   if (e.keyCode == 39) { //r
-//     ariel.x += 50;
-//     console.log(ariel);
-//   }
-//   if (e.keyCode == 37) { //l
-//     ariel.x -= 10;
-//     console.log(ariel);
-//   }
-//   if (e.keyCode == 38) { //up
-//     ariel.y -= 10;
-//     console.log(ariel);
-//   }
-//   if (e.keyCode == 40) { //down
-//     ariel.y += 10;
-//     console.log(ariel);
-//
-//     canvas.width = canvas.width; //resets the canvas.
-//     console.log(ariel);
-//   }
+// /// trying switch case for moving ANCHOR
+// function moveAnchor(e) {
+//     switch(e.keyCode) {
+//         case 37:
+//         anchor.x -= anchor.dx;
+//         console.log(anchor);
+//             // left key pressed
+//             break;
+//         case 39:
+//         anchor.x += anchor.dx;
+//             // right key pressed
+//             break;
+//         case 38:
+//         anchor.y -= anchor.dy;
+//             // up key pressed
+//             break;
+//         case 40:
+//         anchor.y += anchor.dy;
+//             // down key pressed
+//             break;
+//     }
 // }
-animate(ariel);
-// document.onkeydown = moveMermaid;
+
+animate();
+
+// axis-aligned bounding box to make objects collide:
+
+// var rect1 = {x: 5, y: 5, width: 50, height: 50}
+// var rect2 = {x: 20, y: 10, width: 10, height: 10}
+//
+// if (rect1.x < rect2.x + rect2.width &&
+//    rect1.x + rect1.width > rect2.x &&
+//    rect1.y < rect2.y + rect2.height &&
+//    rect1.height + rect1.y > rect2.y) {
+//     // collision detected!
+// }
+//
+// // filling in the values =>
+//
+// if (5 < 30 &&
+//     55 > 20 &&
+//     5 < 20 &&
+//     55 > 10) {
+//     // collision detected!
+// }
+
+document.onkeydown = moveAriel;
+// document.onkeydown = moveAnchor;
+document.onkeydown = moveShell;
 
 // move hook randomly around the room
 
