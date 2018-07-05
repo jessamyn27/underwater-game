@@ -14,7 +14,7 @@ window.addEventListener('resize', function() {
   canvas.height = window.innerHeight;
 });
 // Listens for keydown
-window.addEventListener("keydown", moveAriel, moveShell, moveAnchor, true);
+// window.addEventListener("keydown", moveAriel, moveShell, true);
 
 //CLASSES
 class Floater {
@@ -61,70 +61,70 @@ c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
 }
 // /// trying switch case for moving SHELL
 function moveShell(e) {
-    switch(e.keyCode) {
+    switch(e.which) {
         case 90:
         shell.x -= shell.dx;
         console.log(shell);
-            // left key pressed
+            // left key pressed 'z'
             break;
         case 67:
         shell.x += shell.dx;
-            // right key pressed
+            // right key pressed 'c'
             break;
         case 68:
         shell.y -= shell.dy;
-            // up key pressed
+            // up key pressed 's'
             break;
         case 88:
         shell.y += shell.dy;
-            // down key pressed
+            // down key pressed 'x'
             break;
     }
 }
 /// trying switch case for moving ARIEL
 function moveAriel(e) {
-    switch(e.keyCode) {
-        case 188:
+    switch(e.which) {
+        case 37:
         ariel.x -= ariel.dx;
         console.log(ariel);
             // left key pressed
             break;
-        case 191:
+        case 39:
         ariel.x += ariel.dx;
             // right key pressed
             break;
-        case 76:
+        case 38:
         ariel.y -= ariel.dy;
             // up key pressed
             break;
-        case 190:
+        case 40:
         ariel.y += ariel.dy;
             // down key pressed
             break;
     }
 }
 // /// trying switch case for moving ANCHOR
-function moveAnchor(e) {
-    switch(e.keyCode) {
-        case 37:
-        anchor.x -= anchor.dx;
-        console.log(anchor);
-            // left key pressed
-            break;
-        case 39:
-        anchor.x += anchor.dx;
-            // right key pressed
-            break;
-        case 38:
-        anchor.y -= anchor.dy;
-            // up key pressed
-            break;
-        case 40:
-        anchor.y += anchor.dy;
-            // down key pressed
-            break;
-    }
-}
+// function moveAnchor(e) {
+//     switch(e.which) {
+//         case 37:
+//         anchor.x -= anchor.dx;
+//         console.log(anchor);
+//             // left key pressed
+//             break;
+//         case 39:
+//         anchor.x += anchor.dx;
+//             // right key pressed
+//             break;
+//         case 38:
+//         anchor.y -= anchor.dy;
+//             // up key pressed
+//             break;
+//         case 40:
+//         anchor.y += anchor.dy;
+//             // down key pressed
+//             break;
+//     }
+// }
 
 animate();
 
@@ -152,7 +152,7 @@ animate();
 // }
 
 document.onkeydown = moveAriel;
-document.onkeydown = moveAnchor;
+// document.onkeydown = moveAnchor;
 document.onkeydown = moveShell;
 
 // move hook randomly around the room
