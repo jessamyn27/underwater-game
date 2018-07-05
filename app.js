@@ -14,7 +14,7 @@ window.addEventListener('resize', function() {
   canvas.height = window.innerHeight;
 });
 // Listens for keydown
-window.addEventListener("keydown", moveAriel, moveShell, true);
+window.addEventListener("keydown", moveAriel, moveShell, moveAnchor, true);
 
 //CLASSES
 class Floater {
@@ -104,53 +104,55 @@ function moveAriel(e) {
     }
 }
 // /// trying switch case for moving ANCHOR
-// function moveAnchor(e) {
-//     switch(e.keyCode) {
-//         case 37:
-//         anchor.x -= anchor.dx;
-//         console.log(anchor);
-//             // left key pressed
-//             break;
-//         case 39:
-//         anchor.x += anchor.dx;
-//             // right key pressed
-//             break;
-//         case 38:
-//         anchor.y -= anchor.dy;
-//             // up key pressed
-//             break;
-//         case 40:
-//         anchor.y += anchor.dy;
-//             // down key pressed
-//             break;
-//     }
-// }
+function moveAnchor(e) {
+    switch(e.keyCode) {
+        case 37:
+        anchor.x -= anchor.dx;
+        console.log(anchor);
+            // left key pressed
+            break;
+        case 39:
+        anchor.x += anchor.dx;
+            // right key pressed
+            break;
+        case 38:
+        anchor.y -= anchor.dy;
+            // up key pressed
+            break;
+        case 40:
+        anchor.y += anchor.dy;
+            // down key pressed
+            break;
+    }
+}
 
 animate();
+
 
 // axis-aligned bounding box to make objects collide:
 
 // var rect1 = {x: 5, y: 5, width: 50, height: 50}
 // var rect2 = {x: 20, y: 10, width: 10, height: 10}
-//
-// if (rect1.x < rect2.x + rect2.width &&
-//    rect1.x + rect1.width > rect2.x &&
-//    rect1.y < rect2.y + rect2.height &&
-//    rect1.height + rect1.y > rect2.y) {
+
+// if (ariel.x < shell.x + shell.width &&
+//    ariel.x + ariel.width > shell.x &&
+//    ariel.y < shell.y + shell.height &&
+//    ariel.height + ariel.y > shell.y) {
+// console.log("collision!");
 //     // collision detected!
 // }
-//
-// // filling in the values =>
-//
+
+// filling in the values =>
+
 // if (5 < 30 &&
 //     55 > 20 &&
 //     5 < 20 &&
 //     55 > 10) {
-//     // collision detected!
+    // collision detected!
 // }
 
 document.onkeydown = moveAriel;
-// document.onkeydown = moveAnchor;
+document.onkeydown = moveAnchor;
 document.onkeydown = moveShell;
 
 // move hook randomly around the room
