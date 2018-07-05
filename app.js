@@ -14,7 +14,7 @@ window.addEventListener('resize', function() {
   canvas.height = window.innerHeight;
 });
 // Listens for keydown
-// window.addEventListener("keydown", moveAriel, moveShell, true);
+window.addEventListener("keydown", moveAriel, true);
 
 //CLASSES
 class Floater {
@@ -25,18 +25,47 @@ class Floater {
     this.dx = dx;
     this.dy = dy;
     this.image = image;
-  }
+    this.hasBeenMoving = 0;
 }
-
+move(direction){
+    console.log("MOVING")
+      if(direction == "up"){
+        // move up
+        this.y -= this.dy;
+      }else if(direction =="down"){
+      // move down
+        this.y += this.dy;
+      }else if(direction == "right"){
+        // move right
+          this.x += this.dx
+      }else if(direction =="left"){
+        // move left
+          this.x -= this.dx
+      }
+    this.hasBeenMoving++;
+    if(this.hasBeenMoving > 3){
+        clearInterval(this.floatingAround)
+    }
+}
+float(){
+  console.log("floating around");
+  let randomDirections = ["up", "down", "left", "right"]
+  let randomDirections = randomDirections[Math.floor(Math.random() * randomDireciton.length)];
+    this.hasBeenMoving = 0;
+    this.floatingAround = setInterval(()=>{
+        this.move(Math.random())}, 500)
+}
+}
+// float 
 // need to make the mermaid object
 const ariel = new Floater('ariel', 500, 500, 50, 50);
 
 // need to make the shell object
 const shell = new Floater('shell', 300, 300, 50, 50);
+shell.float()
 
 // need to make the anchor object
 const anchor = new Floater('anchor', 200, 200, 50, 50);
-
 //  images showing up
 const backgroundImage = new Image();
 backgroundImage.src = 'images/background.jpg'
@@ -60,27 +89,27 @@ c.drawImage(arielImage, ariel.x, ariel.y, 100, 100);
 c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
 }
 // /// trying switch case for moving SHELL
-function moveShell(e) {
-    switch(e.which) {
-        case 90:
-        shell.x -= shell.dx;
-        console.log(shell);
-            // left key pressed 'z'
-            break;
-        case 67:
-        shell.x += shell.dx;
-            // right key pressed 'c'
-            break;
-        case 68:
-        shell.y -= shell.dy;
-            // up key pressed 's'
-            break;
-        case 88:
-        shell.y += shell.dy;
-            // down key pressed 'x'
-            break;
-    }
-}
+// function moveShell(e) {
+//     switch(e.which) {
+//         case 90:
+//         shell.x -= shell.dx;
+//         console.log(shell);
+//             // left key pressed 'z'
+//             break;
+//         case 67:
+//         shell.x += shell.dx;
+//             // right key pressed 'c'
+//             break;
+//         case 68:
+//         shell.y -= shell.dy;
+//             // up key pressed 's'
+//             break;
+//         case 88:
+//         shell.y += shell.dy;
+//             // down key pressed 'x'
+//             break;
+//     }
+// }
 /// trying switch case for moving ARIEL
 function moveAriel(e) {
     switch(e.which) {
@@ -153,7 +182,7 @@ animate();
 
 document.onkeydown = moveAriel;
 // document.onkeydown = moveAnchor;
-document.onkeydown = moveShell;
+// document.onkeydown = moveShell;
 
 // move hook randomly around the room
 
