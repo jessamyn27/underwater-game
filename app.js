@@ -50,13 +50,13 @@ move(direction){
 float(){
   console.log("floating around");
   let randomDirections = ["up", "down", "left", "right"]
-  let randomDirections = randomDirections[Math.floor(Math.random() * randomDireciton.length)];
+  let randomDirection = randomDirections[Math.floor(Math.random() * randomDirections.length)];
     this.hasBeenMoving = 0;
     this.floatingAround = setInterval(()=>{
         this.move(Math.random())}, 500)
 }
 }
-// float 
+// float
 // need to make the mermaid object
 const ariel = new Floater('ariel', 500, 500, 50, 50);
 
