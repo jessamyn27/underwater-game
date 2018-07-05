@@ -27,25 +27,25 @@ class Floater {
     this.image = image;
     this.hasBeenMoving = 8;
 }
-// move(direction){
-//     console.log("MOVING")
-//       if(direction == "up" && this.y - this.dy < 0){
-//         // move up
-//         this.y -= this.dy;
-//       }else if(direction =="down" && this.y + this.dy > canvas.height ){
-//       // move down
-//         this.y += this.dy;
-//       }else if(direction == "right" && this.x + this.dx > canvas.width){
-//         // move right
-//         this.x += this.dx
-//       }else if(direction =="left" && this.x - this.dx < 0){
-//         // move left
-//           this.x -= this.dx
-//       }
-//     this.hasBeenMoving++;
-//     if(this.hasBeenMoving > 3){
-//         clearInterval(this.floatingAround)
-//         this.float()
+move(direction){
+    console.log("MOVING")
+      if(direction == "up" && this.y - this.dy < 0){
+        // move up
+        this.y -= this.dy;
+      }else if(direction =="down" && this.y + this.dy < canvas.height ){
+      // move down
+        this.y += this.dy;
+      }else if(direction == "right" && this.x + this.dx < canvas.width){
+        // move right
+        this.x += this.dx
+      }else if(direction =="left" && this.x - this.dx < 0){
+        // move left
+          this.x -= this.dx
+      }
+    this.hasBeenMoving++;
+    if(this.hasBeenMoving > 3){
+        clearInterval(this.floatingAround)
+        this.float()
     }
 
 }
