@@ -149,7 +149,8 @@ const animate = () => {
     ariel.x + ariel.width > anchor.x &&
     ariel.y < anchor.y + anchor.height &&
     ariel.height + ariel.y > anchor.y) {
-    // alert(`game over: ${points} points`);
+    // alert('merbabe got hooked!');
+    // reset();
     gameOver = true;
     // console.log("hook!");
     // alert("argh! merbabe got hooked!")
