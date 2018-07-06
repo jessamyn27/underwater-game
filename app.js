@@ -45,7 +45,7 @@ move(direction){
           this.x -= this.dx
       }
     this.hasBeenMoving++;
-    if(this.hasBeenMoving > 5){
+    if(this.hasBeenMoving > 10){
         clearInterval(this.floatingAround)
         this.float()
     }
@@ -57,7 +57,7 @@ float(){
  let randomDirection = randomDirections[Math.floor(Math.random() * randomDirections.length)];
    this.hasBeenMoving = 0;
    this.floatingAround = setInterval(()=>{
-       this.move(randomDirection)}, 75)
+       this.move(randomDirection)}, 70)
 }
 }
 // float
@@ -73,22 +73,28 @@ shell.height = 100
 shell.width = 200
 
 // need to make the shell object
-const clam = new Floater('clam', 300, 300, 50, 50);
+const clam = new Floater('clam', 300, 300, 200, 200);
 clam.float()
 clam.height = 100
 clam.width = 300
 
 // need to make the anchor object
-const anchor = new Floater('anchor', 200, 200, 50, 50);
+const anchor = new Floater('anchor', 200, 200, 100, 100);
 anchor.float()
 anchor.height = 100
 anchor.width = 400
 
 // need to make the anchor object
-const snail = new Floater('snail', 200, 200, 50, 50);
+const snail = new Floater('snail', 400, 400, 10, 10);
 snail.float()
 snail.height = 100
 snail.width = 500
+
+// need to make the anchor object
+const danger = new Floater('danger', 400, 400, 10, 10);
+// danger.float()
+danger.height = 100
+danger.width = 500
 
 //  images showing up
 const backgroundImage = new Image();
@@ -109,6 +115,9 @@ clamImage.src = 'images/clam.png'
 const snailImage = new Image();
 snailImage.src = 'images/sea-snail.png'
 
+const dangerImage = new Image();
+dangerImage.src = 'images/danger.png'
+
 const hide = () => {
   shell.x = 200;
   shell.y = 200;
@@ -121,14 +130,19 @@ if (ariel.x < shell.x + shell.width &&
    ariel.x + ariel.width > shell.x &&
    ariel.y < shell.y + shell.height &&
    ariel.height + ariel.y > shell.y) {
-// console.log("shell!");
 console.log("shell");
+// ariel.style.display="none";
+// c.shell.remove();
+// shell.splice(i);
+c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
 }
 if (ariel.x < anchor.x + anchor.width &&
    ariel.x + ariel.width > anchor.x &&
    ariel.y < anchor.y + anchor.height &&
    ariel.height + ariel.y > anchor.y) {
+
 console.log("hook!");
+// alert("argh! merbabe got hooked!")
 }
 if (ariel.x < clam.x + clam.width &&
    ariel.x + ariel.width > clam.x &&
@@ -144,10 +158,11 @@ console.log("snail!");
 }
 c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 c.drawImage(shellImage, shell.x, shell.y, 100, 100);
-c.drawImage(arielImage, ariel.x, ariel.y, 200, 200);
 c.drawImage(anchorImage, anchor.x, anchor.y, 200, 200);
 c.drawImage(clamImage, clam.x, clam.y, 100, 100);
-c.drawImage(snailImage, snail.x, snail.y, 100, 100);
+c.drawImage(snailImage, snail.x, snail.y, 700, 700);
+c.drawImage(arielImage, ariel.x, ariel.y, 300, 300);
+// c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
 
 }
 

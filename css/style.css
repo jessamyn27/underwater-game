@@ -1,3 +1,18 @@
 body {
 	text-align: center;
+	background-color: #D6F5E3;
+
+}
+
+h1	{
+	font-family: 'Gaegu';
+	font-size: 100px;
+	color: #918499;
+}
+
+h2 {
+	font-family: 'Gaegu';
+	font-size: 70px;
+	color: #918499;
+
 }
