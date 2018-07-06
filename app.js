@@ -16,6 +16,8 @@ window.addEventListener('resize', function() {
 // Listens for keydown
 window.addEventListener("keydown", moveAriel, true);
 
+var gameOver = false;
+
 //CLASSES
 class Floater {
   constructor(name, x, y, dx, dy, image) {
@@ -25,6 +27,7 @@ class Floater {
     this.dx = dx;
     this.dy = dy;
     this.image = image;
+    this.isVisible = true;
     this.hasBeenMoving = 0;
     // this.height = height;
     // this.width = wid
@@ -71,6 +74,7 @@ const shell = new Floater('shell', 300, 300, 100, 100);
 shell.float()
 shell.height = 100
 shell.width = 200
+
 
 // need to make the shell object
 const clam = new Floater('clam', 300, 300, 200, 200);
@@ -130,37 +134,52 @@ if (ariel.x < shell.x + shell.width &&
    ariel.x + ariel.width > shell.x &&
    ariel.y < shell.y + shell.height &&
    ariel.height + ariel.y > shell.y) {
-console.log("shell");
+shell.isVisible = false;
+// gameOver = true;
 // ariel.style.display="none";
 // c.shell.remove();
 // shell.splice(i);
-c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
 }
 if (ariel.x < anchor.x + anchor.width &&
    ariel.x + ariel.width > anchor.x &&
    ariel.y < anchor.y + anchor.height &&
    ariel.height + ariel.y > anchor.y) {
-
-console.log("hook!");
+     alert("game over");
+     gameOver = true;
+// console.log("hook!");
 // alert("argh! merbabe got hooked!")
 }
 if (ariel.x < clam.x + clam.width &&
    ariel.x + ariel.width > clam.x &&
    ariel.y < clam.y + clam.height &&
    ariel.height + ariel.y > clam.y) {
-console.log("clam!");
+clam.isVisible = false;
 }
 if (ariel.x < snail.x + snail.width &&
    ariel.x + ariel.width > snail.x &&
    ariel.y < snail.y + snail.height &&
    ariel.height + ariel.y > snail.y) {
-console.log("snail!");
+     clam.isVisible = false;
+     // console.log('snail overlapped');
+// snail.visible = false;
+// snail = null;
+// console.log("snail!");
 }
 c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-c.drawImage(shellImage, shell.x, shell.y, 100, 100);
+if (shell.isVisible)
+  c.drawImage(shellImage, shell.x, shell.y, 100, 100);
+
+  if (anchor.isVisible)
 c.drawImage(anchorImage, anchor.x, anchor.y, 200, 200);
+
+if (clam.isVisible)
 c.drawImage(clamImage, clam.x, clam.y, 100, 100);
-c.drawImage(snailImage, snail.x, snail.y, 700, 700);
+
+if (snail.isVisible)
+  c.drawImage(snailImage, snail.x, snail.y, 700, 700);
+  if (shell.isVisible)
+
+  if (ariel.isVisible)
 c.drawImage(arielImage, ariel.x, ariel.y, 300, 300);
 // c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
 
@@ -197,9 +216,8 @@ function moveAriel(e) {
     }
 }
 
-
-
-animate();
+if (!gameOver)
+  animate();
 
 
 // axis-aligned bounding box to make objects collide:
