@@ -30,7 +30,7 @@ class Floater {
     // this.width = wid
 }
 move(direction){
-    console.log("MOVING")
+    // console.log("MOVING")
       if(direction == "up" && this.y - this.dy > 0){
         // move up
         this.y -= this.dy;
@@ -45,20 +45,19 @@ move(direction){
           this.x -= this.dx
       }
     this.hasBeenMoving++;
-    if(this.hasBeenMoving > 3){
+    if(this.hasBeenMoving > 5){
         clearInterval(this.floatingAround)
         this.float()
     }
-
 }
 
 float(){
- console.log("floating around");
+ // console.log("floating around");
  let randomDirections = ["up", "down", "left", "right"]
  let randomDirection = randomDirections[Math.floor(Math.random() * randomDirections.length)];
    this.hasBeenMoving = 0;
    this.floatingAround = setInterval(()=>{
-       this.move(randomDirection)}, 100)
+       this.move(randomDirection)}, 75)
 }
 }
 // float
@@ -68,13 +67,29 @@ ariel.height = 100
 ariel.width = 100
 
 // need to make the shell object
-const shell = new Floater('shell', 300, 300, 50, 50);
+const shell = new Floater('shell', 300, 300, 100, 100);
 shell.float()
 shell.height = 100
-shell.width = 100
+shell.width = 200
+
+// need to make the shell object
+const clam = new Floater('clam', 300, 300, 50, 50);
+clam.float()
+clam.height = 100
+clam.width = 300
 
 // need to make the anchor object
 const anchor = new Floater('anchor', 200, 200, 50, 50);
+anchor.float()
+anchor.height = 100
+anchor.width = 400
+
+// need to make the anchor object
+const snail = new Floater('snail', 200, 200, 50, 50);
+snail.float()
+snail.height = 100
+snail.width = 500
+
 //  images showing up
 const backgroundImage = new Image();
 backgroundImage.src = 'images/background.jpg'
@@ -88,20 +103,51 @@ arielImage.src = 'images/mermaid.png'
 const anchorImage = new Image();
 anchorImage.src = 'images/fishing.png'
 
+const clamImage = new Image();
+clamImage.src = 'images/clam.png'
+
+const snailImage = new Image();
+snailImage.src = 'images/sea-snail.png'
+
+const hide = () => {
+  shell.x = 200;
+  shell.y = 200;
+}
 // function to show & size my images on the screen
 const animate = () => {
-c.clearRect(0, 0, 1000, 1000);
+c.clearRect(0, 0, canvas.width, canvas.height);
 requestAnimationFrame(animate);
 if (ariel.x < shell.x + shell.width &&
    ariel.x + ariel.width > shell.x &&
    ariel.y < shell.y + shell.height &&
    ariel.height + ariel.y > shell.y) {
-console.log("collision!");
+// console.log("shell!");
+console.log("shell");
+}
+if (ariel.x < anchor.x + anchor.width &&
+   ariel.x + ariel.width > anchor.x &&
+   ariel.y < anchor.y + anchor.height &&
+   ariel.height + ariel.y > anchor.y) {
+console.log("hook!");
+}
+if (ariel.x < clam.x + clam.width &&
+   ariel.x + ariel.width > clam.x &&
+   ariel.y < clam.y + clam.height &&
+   ariel.height + ariel.y > clam.y) {
+console.log("clam!");
+}
+if (ariel.x < snail.x + snail.width &&
+   ariel.x + ariel.width > snail.x &&
+   ariel.y < snail.y + snail.height &&
+   ariel.height + ariel.y > snail.y) {
+console.log("snail!");
 }
 c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 c.drawImage(shellImage, shell.x, shell.y, 100, 100);
-c.drawImage(arielImage, ariel.x, ariel.y, 100, 100);
-c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
+c.drawImage(arielImage, ariel.x, ariel.y, 200, 200);
+c.drawImage(anchorImage, anchor.x, anchor.y, 200, 200);
+c.drawImage(clamImage, clam.x, clam.y, 100, 100);
+c.drawImage(snailImage, snail.x, snail.y, 100, 100);
 
 }
 
@@ -112,7 +158,7 @@ function moveAriel(e) {
         if(ariel.x - ariel.dx > 0){
         ariel.x -= ariel.dx;
       }
-        console.log(ariel);
+        // console.log(ariel);
             break;
             // left key pressed
         case 39:
