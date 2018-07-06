@@ -138,7 +138,7 @@ const animate = () => {
     ariel.height + ariel.y > shell.y) {
     shell.isVisible = false;
     // alert(`${points} points`);
-    console.log("collide with shell");
+    // console.log("collide with shell");
     points += 10;
     // gameOver = true;
     // ariel.style.display="none";
@@ -161,7 +161,7 @@ const animate = () => {
     clam.isVisible = false;
     // alert(`${points} points`);
     points += 20;
-    console.log("clam");
+    // console.log("clam");
   }
   if (ariel.x < snail.x + snail.width &&
     ariel.x + ariel.width > snail.x &&
@@ -170,7 +170,7 @@ const animate = () => {
     snail.isVisible = false;
     // alert(`${points} points`);
     points += 5;
-    console.log("snail");
+    // console.log("snail");
     // console.log('snail overlapped');
     // snail.visible = false;
     // snail = null;
@@ -179,19 +179,19 @@ const animate = () => {
   c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
   if (shell.isVisible)
-    c.drawImage(shellImage, shell.x, shell.y, 800, 800);
+    c.drawImage(shellImage, shell.x, shell.y, 100, 100);
 
   if (anchor.isVisible)
-    c.drawImage(anchorImage, anchor.x, anchor.y, 400, 400);
+    c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
 
   if (clam.isVisible)
-    c.drawImage(clamImage, clam.x, clam.y, 500, 500);
+    c.drawImage(clamImage, clam.x, clam.y, 100, 100);
 
   if (snail.isVisible)
-    c.drawImage(snailImage, snail.x, snail.y, 700, 700);
+    c.drawImage(snailImage, snail.x, snail.y, 300, 300);
 
     if (ariel.isVisible)
-      c.drawImage(arielImage, ariel.x, ariel.y, 400, 400);
+      c.drawImage(arielImage, ariel.x, ariel.y, 200, 200);
   // c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
 
 }
@@ -228,6 +228,7 @@ function moveAriel(e) {
 }
 
 if (!gameOver);
+  alert("hooked!")
   animate();
 
 
