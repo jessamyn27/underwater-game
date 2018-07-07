@@ -15,7 +15,6 @@ window.addEventListener('resize', function() {
 });
 // Listens for keydown
 window.addEventListener("keydown", moveAriel, true);
-
 var gameOver = false;
 var points = 0;
 
@@ -42,27 +41,7 @@ window.onload = function () {
     startTimer(halfMinute, display);
 };
 
-// const timePassing = () => {
-//     $('#time').text('Time: ' + seconds + ' s');
-//     console.log(`It has been ${seconds} seconds`);
-//     seconds++;
-//
-// const timePasses = setInterval(timePassing, 1000);
-//     };
-  //
-  // $('#reset').on('click', (e) => {
-  //     location.reload();
-    // });
-
-
-    // $('#feed').on('click', (e) => {
-    //   if (pet.hunger > 1) {
-    //     pet.hunger--;
-    //     $('#hunger').text('Hunger: ' + pet.hunger);
-    //   }
-    // });
-
-//CLASSES
+//CLASS
 class Floater {
   constructor(name, x, y, dx, dy, image,) {
     this.name = name;
@@ -115,6 +94,7 @@ ariel.height = 100
 ariel.width = 100
 ariel.points = 0
 
+
 // need to make the shell object
 const shell = new Floater('shell', 400, 400, 100, 100);
 shell.float()
@@ -143,6 +123,8 @@ snail.width = 100
 // need to make the anchor object
 const danger = new Floater('danger', 400, 400, 10, 10);
 // danger.float()
+danger.isVisible = false;
+danger.float()
 danger.height = 100
 danger.width = 100
 
@@ -196,8 +178,14 @@ const animate = () => {
     // alert('merbabe got hooked!');
     // reset();
     ariel.isVisible = false;
-    gameOver = true;
+    anchor.isVisible = false;
+    danger.isVisible = true;
+    shell.isVisible = false;
+    snail.isVisible = false;
+    clam.isVisible = false;
 
+    gameOver = true;
+    clearInterval();
 
     // console.log("hook!");
     // alert("argh! merbabe got hooked!")
@@ -240,10 +228,10 @@ const animate = () => {
 
     if (ariel.isVisible)
       c.drawImage(arielImage, ariel.x, ariel.y, 200, 200);
-  // c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
 
+      if (danger.isVisible)
+  c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
 }
-
 
 /// trying switch case for moving ARIEL
 function moveAriel(e) {
@@ -277,7 +265,7 @@ function moveAriel(e) {
 }
 
 if (!gameOver);
-  alert("hooked!")
+  // alert("hooked!")
   animate();
 
 
