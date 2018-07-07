@@ -19,6 +19,49 @@ window.addEventListener("keydown", moveAriel, true);
 var gameOver = false;
 var points = 0;
 
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var halfMinute = 30 * 1,
+        display = document.querySelector('#time');
+    startTimer(halfMinute, display);
+};
+
+// const timePassing = () => {
+//     $('#time').text('Time: ' + seconds + ' s');
+//     console.log(`It has been ${seconds} seconds`);
+//     seconds++;
+//
+// const timePasses = setInterval(timePassing, 1000);
+//     };
+  //
+  // $('#reset').on('click', (e) => {
+  //     location.reload();
+    // });
+
+
+    // $('#feed').on('click', (e) => {
+    //   if (pet.hunger > 1) {
+    //     pet.hunger--;
+    //     $('#hunger').text('Hunger: ' + pet.hunger);
+    //   }
+    // });
+
 //CLASSES
 class Floater {
   constructor(name, x, y, dx, dy, image,) {
@@ -70,6 +113,7 @@ class Floater {
 const ariel = new Floater('ariel', 50, 50, 50, 50);
 ariel.height = 100
 ariel.width = 100
+ariel.points = 0
 
 // need to make the shell object
 const shell = new Floater('shell', 400, 400, 100, 100);
@@ -151,7 +195,10 @@ const animate = () => {
     ariel.height + ariel.y > anchor.y) {
     // alert('merbabe got hooked!');
     // reset();
+    ariel.isVisible = false;
     gameOver = true;
+
+
     // console.log("hook!");
     // alert("argh! merbabe got hooked!")
   }
@@ -197,6 +244,7 @@ const animate = () => {
 
 }
 
+
 /// trying switch case for moving ARIEL
 function moveAriel(e) {
   switch (e.which) {
@@ -231,6 +279,7 @@ function moveAriel(e) {
 if (!gameOver);
   alert("hooked!")
   animate();
+
 
 
 // axis-aligned bounding box to make objects collide:
