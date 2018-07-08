@@ -1,8 +1,15 @@
 # Underwater Game!
 
+Interactive animated game to chase shells and avoid the hook!
+
 
 # URL Link - Best Played at 25% Zoom Out | Full Screen
-Interactive animated game to chase shells and avoid the hook!
+
+http://combative-skate.surge.sh
+
+## Screenshot
+
+![](images/screen-shot)
 
 ## Getting Started
 
