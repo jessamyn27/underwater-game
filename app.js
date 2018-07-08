@@ -19,8 +19,10 @@ var gameOver = false;
 // var points = 0;
 $('#Ariel').on('click', (e) => {
 console.log(ariel);
-startTimer() = true;
+// startTimer() = true;
 });
+
+$('#shells').hide()
 
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
@@ -35,6 +37,10 @@ function startTimer(duration, display) {
 
         if (--timer < 0) {
           display.textContent = "Did you collect all your shells for your Merbabies?";
+          anchor.isVisible = false;
+          ariel.isVisible = false;
+          danger.isVisible = false;
+          alert('try again?');
         }
         // if (ariel.isVisible = false) {
         //   display.textContent = "you got hooked!"
@@ -43,16 +49,10 @@ function startTimer(duration, display) {
 
         }
 
-
 window.onload = function () {
-    var halfMinute = 30 * 1,
+    var halfMinute = 10 * 1,
         display = document.querySelector('#time');
     startTimer(halfMinute, display);
-}
-
-function stopTimer() {
-    clearTimer(duration, seconds);
-    startTimer() = false;
 }
 
 //CLASS
@@ -108,15 +108,13 @@ ariel.height = 200
 ariel.width = 200
 ariel.points = 0
 
-
 // need to make the shell object
 const shell = new Floater('shell', 800, 800, 100, 100);
 shell.float()
 shell.height = 200
 shell.width = 200
 
-
-// need to make the shell object
+// need to make the clam object
 const clam = new Floater('clam', 800, 800, 100, 100);
 clam.float()
 clam.height = 200
@@ -128,15 +126,14 @@ anchor.float()
 anchor.height = 200
 anchor.width = 200
 
-// need to make the anchor object
+// need to make the snail object
 const snail = new Floater('snail', 800, 800, 100, 100);
 snail.float()
 snail.height = 200
 snail.width = 200
 
-// need to make the anchor object
+// need to make the skull object
 const danger = new Floater('danger', 400, 400, 100, 100);
-// danger.float()
 danger.isVisible = false;
 danger.float()
 danger.height = 20
@@ -177,6 +174,8 @@ const animate = () => {
     ariel.y < shell.y + shell.height &&
     ariel.height + ariel.y > shell.y) {
     shell.isVisible = false;
+    $('shells').show();
+    display = document.querySelector('#shells');
     // alert(`${points} points`);
     // console.log("collide with shell");
     // points += 10;
@@ -197,7 +196,7 @@ const animate = () => {
     shell.isVisible = false;
     snail.isVisible = false;
     clam.isVisible = false;
-
+    checkEndGame();
     gameOver = true;
     clearTimer();
 
@@ -277,7 +276,12 @@ function moveAriel(e) {
       // down key pressed
   }
 }
-
+// checkEndGame() = {
+// if (startTimer < 0)) {
+//   console.log("game over");
+// }
+// //
+// };
 if (!gameOver);
   // alert("hooked!")
   animate();
