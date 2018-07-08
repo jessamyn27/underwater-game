@@ -1,10 +1,12 @@
 # Underwater Game!
 
+
+# URL Link - Best Played at 25% Zoom Out | Full Screen
 Interactive animated game to chase shells and avoid the hook!
 
 ## Getting Started
 
-Use the arrow keys to get Merbabe to move around in the water.  She hovers over shells to collect them and they disapear.  She avoids the hook.  
+Use the arrow keys to get Merbabe to move around in the water.  She hovers over shells to collect them and they disappear.  She avoids the hook.  
 
 She wins if she collects all three shells before the 30 second timer stops at 0 and doesn't get the hook.
 
@@ -18,13 +20,6 @@ css
 on chrome
 jQuery
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
