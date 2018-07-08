@@ -3,7 +3,7 @@
 Interactive animated game to chase shells and avoid the hook!
 
 
-# URL Link - Best Played at 25% Zoom Out | Full Screen
+## URL Link - Best Played at 25% Zoom Out | Full Screen
 
 http://combative-skate.surge.sh
 
