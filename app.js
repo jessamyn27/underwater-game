@@ -85,7 +85,7 @@ class Floater {
       this.x -= this.dx
     }
     this.hasBeenMoving++;
-    if (this.hasBeenMoving > 10) {
+    if (this.hasBeenMoving > 3) {
       clearInterval(this.floatingAround)
       this.float()
     }
@@ -98,44 +98,44 @@ class Floater {
     this.hasBeenMoving = 0;
     this.floatingAround = setInterval(() => {
       this.move(randomDirection)
-    }, 80)
+    }, 50)
   }
 }
 // float
 // need to make the mermaid object
-const ariel = new Floater('ariel', 700, 700, 50, 50);
-ariel.height = 100
-ariel.width = 100
+const ariel = new Floater('ariel', 0, 0, 100, 100);
+ariel.height = 200
+ariel.width = 200
 ariel.points = 0
 
 
 // need to make the shell object
-const shell = new Floater('shell', 0, 1000, 100, 100);
+const shell = new Floater('shell', 800, 800, 100, 100);
 shell.float()
-shell.height = 20
-shell.width = 20
+shell.height = 200
+shell.width = 200
 
 
 // need to make the shell object
-const clam = new Floater('clam', 500, 0, 200, 0);
+const clam = new Floater('clam', 800, 800, 100, 100);
 clam.float()
-clam.height = 20
-clam.width = 20
+clam.height = 200
+clam.width = 200
 
 // need to make the anchor object
-const anchor = new Floater('anchor', 0, 0, 20, 20);
+const anchor = new Floater('anchor', 800, 800, 100, 100);
 anchor.float()
-anchor.height = 20
-anchor.width = 20
+anchor.height = 200
+anchor.width = 200
 
 // need to make the anchor object
-const snail = new Floater('snail', 800, 800, 10, 10);
+const snail = new Floater('snail', 800, 800, 100, 100);
 snail.float()
-snail.height = 20
-snail.width = 20
+snail.height = 200
+snail.width = 200
 
 // need to make the anchor object
-const danger = new Floater('danger', 400, 400, 10, 10);
+const danger = new Floater('danger', 400, 400, 100, 100);
 // danger.float()
 danger.isVisible = false;
 danger.float()
@@ -199,7 +199,7 @@ const animate = () => {
     clam.isVisible = false;
 
     gameOver = true;
-    clearInterval();
+    clearTimer();
 
     // console.log("hook!");
     // alert("argh! merbabe got hooked!")
@@ -232,19 +232,19 @@ const animate = () => {
     c.drawImage(shellImage, shell.x, shell.y, 300, 300);
 
   if (anchor.isVisible)
-    c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
+    c.drawImage(anchorImage, anchor.x, anchor.y, 400, 400);
 
   if (clam.isVisible)
-    c.drawImage(clamImage, clam.x, clam.y, 100, 100);
+    c.drawImage(clamImage, clam.x, clam.y, 300, 300);
 
   if (snail.isVisible)
     c.drawImage(snailImage, snail.x, snail.y, 300, 300);
 
     if (ariel.isVisible)
-      c.drawImage(arielImage, ariel.x, ariel.y, 200, 200);
+      c.drawImage(arielImage, ariel.x, ariel.y, 300, 300);
 
       if (danger.isVisible)
-  c.drawImage(dangerImage, danger.x, danger.y, 100, 100);
+  c.drawImage(dangerImage, danger.x, danger.y, 1000, 1000);
 }
 
 /// trying switch case for moving ARIEL
