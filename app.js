@@ -34,23 +34,21 @@ function startTimer(duration, display) {
         display.textContent = "Hurry Merbabe! You only have " + ":" + seconds + " Seconds!";
 
         if (--timer < 0) {
-            timer = duration;
+          display.textContent = "Did you collect all your shells for your Merbabies?";
         }
+        // if (ariel.isVisible = false) {
+        //   display.textContent = "you got hooked!"
+        // }
     }, 1000);
-        if (timer = 0) {
-          display.textContent = "time is up!";
+
         }
-}
+
 
 window.onload = function () {
     var halfMinute = 30 * 1,
         display = document.querySelector('#time');
     startTimer(halfMinute, display);
 }
-
-// function stopTimer(duration, display) {
-//     var = timer(function(){ alert("Hello"); }, 3000);
-// }
 
 function stopTimer() {
     clearTimer(duration, seconds);
@@ -100,49 +98,49 @@ class Floater {
     this.hasBeenMoving = 0;
     this.floatingAround = setInterval(() => {
       this.move(randomDirection)
-    }, 70)
+    }, 80)
   }
 }
 // float
 // need to make the mermaid object
-const ariel = new Floater('ariel', 50, 50, 50, 50);
+const ariel = new Floater('ariel', 700, 700, 50, 50);
 ariel.height = 100
 ariel.width = 100
 ariel.points = 0
 
 
 // need to make the shell object
-const shell = new Floater('shell', 400, 400, 100, 100);
+const shell = new Floater('shell', 0, 1000, 100, 100);
 shell.float()
-shell.height = 100
-shell.width = 100
+shell.height = 20
+shell.width = 20
 
 
 // need to make the shell object
-const clam = new Floater('clam', 500, 500, 200, 200);
+const clam = new Floater('clam', 500, 0, 200, 0);
 clam.float()
-clam.height = 100
-clam.width = 100
+clam.height = 20
+clam.width = 20
 
 // need to make the anchor object
-const anchor = new Floater('anchor', 1000, 1000, 100, 100);
+const anchor = new Floater('anchor', 0, 0, 20, 20);
 anchor.float()
-anchor.height = 500
-anchor.width = 500
+anchor.height = 20
+anchor.width = 20
 
 // need to make the anchor object
 const snail = new Floater('snail', 800, 800, 10, 10);
 snail.float()
-snail.height = 100
-snail.width = 100
+snail.height = 20
+snail.width = 20
 
 // need to make the anchor object
 const danger = new Floater('danger', 400, 400, 10, 10);
 // danger.float()
 danger.isVisible = false;
 danger.float()
-danger.height = 100
-danger.width = 100
+danger.height = 20
+danger.width = 20
 
 //  images showing up
 const backgroundImage = new Image();
@@ -231,7 +229,7 @@ const animate = () => {
   c.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
   if (shell.isVisible)
-    c.drawImage(shellImage, shell.x, shell.y, 100, 100);
+    c.drawImage(shellImage, shell.x, shell.y, 300, 300);
 
   if (anchor.isVisible)
     c.drawImage(anchorImage, anchor.x, anchor.y, 100, 100);
